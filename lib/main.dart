@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'screens/personal_data.dart';
 import 'screens/today.dart';
 import 'screens/info.dart';
+import 'providers/my_day.dart';
+import 'providers/my_month.dart';
+import 'providers/my_year.dart';
 
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) {
+        MyYearProvider();
+        MyMonthProvider();
+        MyDayProvider();
+      },
+      child: const MainApp(),
+    ), 
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -13,7 +26,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+  providers: [
+    ChangeNotifierProvider(create: (context) => MyDayProvider()),
+    ChangeNotifierProvider(create: (context) => MyMonthProvider()),
+    ChangeNotifierProvider(create: (context) => MyYearProvider()),
+  ],
+  child: MaterialApp(
       theme: ThemeData(
         primaryColor: const Color.fromARGB(179, 255, 204, 0),
       ),
@@ -25,7 +44,7 @@ class MainApp extends StatelessWidget {
             title: const Text('Inner Light Guide'),
           ),
           body: const TabBarView(
-            children: [
+            children: <Widget>[
               PersonalData(),
               Today(),
               Info(),
@@ -42,6 +61,6 @@ class MainApp extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }
