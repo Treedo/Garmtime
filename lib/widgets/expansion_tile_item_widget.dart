@@ -138,7 +138,10 @@ class _ExpansionTileItemWidgetState extends State<ExpansionTileItemWidget> {
       title: Text(
         item.headerValue,
         style: TextStyle(
-          color: isExpanded ? Colors.blue : Colors.black,
+          color: isExpanded ? 
+            Theme.of(context).colorScheme.secondary : 
+            Theme.of(context).colorScheme.onPrimary,
+          fontWeight: isExpanded ? FontWeight.w700 : FontWeight.normal,
         ),
       ),
       children: [

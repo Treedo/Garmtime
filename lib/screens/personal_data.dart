@@ -175,62 +175,72 @@ class PersonalDataState extends State<PersonalData> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      color: const Color.fromRGBO(255, 255, 250, 1),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Сьогодні: \n${DateFormat('dd MMMM yyyy', 'uk').format(_currentDate)}',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                color: Colors.black87,
+    return LayoutBuilder(
+    builder: (BuildContext context, BoxConstraints viewportConstraints) {
+      return SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: viewportConstraints.maxHeight,
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+              Text(
+                'Сьогодні: \n${DateFormat('dd MMMM yyyy', 'uk').format(_currentDate)}',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: 
+                    Theme.of(context).colorScheme.secondary,
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Ваша дата народження: \n${_dateOfBirth != null ? DateFormat('dd MMMM yyyy', 'uk').format(_dateOfBirth!) : 'Не вказана'}',
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 18,
-                color: Colors.brown,
+              const SizedBox(height: 20),
+              Text(
+                'Ваша дата народження: \n${_dateOfBirth != null ? DateFormat('dd MMMM yyyy', 'uk').format(_dateOfBirth!) : 'Не вказана'}',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Theme.of(context).colorScheme.error,
+                  
+                ),
               ),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
+              const SizedBox(height: 30),
+              ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.indigo,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 ),
                 onPressed: () {
                   _selectDate(context);
                 },
-                child: const Center(
-                  child: Text('Вказати дату народження',
-                      style: TextStyle(fontSize: 16, color: Colors.white)),
-                )),
-            const SizedBox(height: 30),
-            ValueListenableBuilder<List<TextSpan>>(
-              valueListenable: futureNotifier!,
-              builder:
-                  (BuildContext context, List<TextSpan> value, Widget? child) {
-                return value.isNotEmpty
-                    ? RichText(
-                        text: TextSpan(
-                          children: value,
-                        ),
-                      )
-                    : const CircularProgressIndicator();
-              },
-            ),
-          ],
+                child: Container(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Вказати дату народження',
+                    style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.primary,),
+                  ),
+                ),
+              ),              
+              const SizedBox(height: 30),
+              ValueListenableBuilder<List<TextSpan>>(
+                valueListenable: futureNotifier!,
+                builder:
+                    (BuildContext context, List<TextSpan> value, Widget? child) {
+                  return value.isNotEmpty
+                      ? RichText(
+                          text: TextSpan(
+                            children: value,
+                          ),
+                        )
+                      : const CircularProgressIndicator();
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
+  });
   }
 }
