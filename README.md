@@ -1,7 +1,7 @@
 
-✨ Inner Light Guide ✨
+✨ GARMTIME ✨
 
-Inner Light Guide is a cross-platform mobile application designed to bring positivity, mindfulness, and personal growth into your daily routine. Built with Flutter, it provides personalized daily affirmations, color and gemstone guidance, and inspirational advice to help you unlock your inner happiness and potential.
+GARMTIME is a cross-platform mobile application designed to bring positivity, mindfulness, and personal growth into your daily routine. Built with Flutter, it provides personalized daily affirmations, color and gemstone guidance, and inspirational advice to help you unlock your inner happiness and potential.
 
 ## Features
 
@@ -22,7 +22,7 @@ To get a local copy up and running follow these simple steps.
 ### Installation
 
 1. Clone the repo
-    git clone https://github.com/Treedo/Inner-Light-Guide.git
+    git clone https://github.com/Treedo/Garmtime
 
 2. Install Flutter packages
     flutter pub get

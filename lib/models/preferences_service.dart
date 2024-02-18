@@ -17,4 +17,3 @@ class PreferencesService {
     await prefs.setString('dateOfBirth', date.toIso8601String());
   }
 }
-

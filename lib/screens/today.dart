@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:inner_light_guide/providers/my_day.dart';
-import 'package:inner_light_guide/providers/my_month.dart';
-import 'package:inner_light_guide/providers/my_year.dart';
+import 'package:garmtime/data.dart';
+import 'package:garmtime/models/numerologic_provider.dart';
+import 'package:garmtime/widgets/expansion_tile_item_widget.dart';
 import 'package:provider/provider.dart';
 
-// ignore: use_key_in_widget_constructors
 class Today extends StatefulWidget {
   const Today({super.key});
 
@@ -14,27 +13,24 @@ class Today extends StatefulWidget {
 }
 
 class _TodayState extends State<Today> {
+  //List<Item> data = [];
+
   @override
   Widget build(BuildContext context) {
-    int myDay = Provider.of<MyDayProvider>(context).myDay;
-    int myMonth = Provider.of<MyMonthProvider>(context).myMonth;
-    int myYear = Provider.of<MyYearProvider>(context).myYear;
+    int dayIndex = Provider.of<MyNumerologigProvider>(context).myDay;
+    int yearIndex = Provider.of<MyNumerologigProvider>(context).myYear;
 
-    return Center(
-      child: 
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text('Today is your day: '),
-          Text(myDay.toString()),
-          const SizedBox(width: 10),
-          const Text('My month: '),
-          Text(myMonth.toString()),
-          const SizedBox(width: 10),
-          const Text('My year: '),
-          Text(myYear.toString()),
-        ],
-      ),
+    String myDay = dayIndex.toString();
+    String myYear = yearIndex.toString();
+
+    String myDayText = data['days']![dayIndex - 1];
+    String myYearText = data['years']![yearIndex - 1];
+
+    return ExpansionPanelListExample(
+      myDayText: myDayText,
+      myYearText: myYearText,
+      myDay: myDay,
+      myYear: myYear,
     );
   }
 }
