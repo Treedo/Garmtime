@@ -5,8 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:garmtime/screens/personal_data.dart';
 import 'package:garmtime/screens/today.dart';
 
-
-
 bool firstRun = true;
 
 void main() {
@@ -44,8 +42,6 @@ class MainApp extends StatelessWidget {
               ),
               bottomNavigationBar: TabBar(
                 dividerHeight: 48,
-                //unselectedLabelColor: Colors.lightBlue,
-                //labelColor: Colors.lightBlueAccent,
                 tabs: [
                   Tab(icon: Icon(Icons.person)),
                   Tab(icon: Icon(Icons.calendar_today)),
@@ -57,13 +53,3 @@ class MainApp extends StatelessWidget {
         ));
   }
 }
-
-
-
-
-
-
-
-
-
-

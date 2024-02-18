@@ -10,11 +10,10 @@ class PersonalData extends StatefulWidget {
   const PersonalData({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _PersonalDataState createState() => _PersonalDataState();
+  PersonalDataState createState() => PersonalDataState();
 }
 
-class _PersonalDataState extends State<PersonalData> {
+class PersonalDataState extends State<PersonalData> {
   DateTime? _dateOfBirth;
   final DateTime _currentDate = DateTime.now();
   final _preferencesService = PreferencesService();

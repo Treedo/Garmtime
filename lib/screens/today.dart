@@ -8,12 +8,10 @@ class Today extends StatefulWidget {
   const Today({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
-  _TodayState createState() => _TodayState();
+  TodayState createState() => TodayState();
 }
 
-class _TodayState extends State<Today> {
-  //List<Item> data = [];
+class TodayState extends State<Today> {
 
   @override
   Widget build(BuildContext context) {
